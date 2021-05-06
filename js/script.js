@@ -1,7 +1,3 @@
-/*
-Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
-*/
-
 // ----------------------VARIABILI-----------------------------
 var score = 0;
 var userChoice;
@@ -73,16 +69,16 @@ var timer = setInterval (function() {
         for (var e = 0; e < userNumbers.length; e++) {
             if (userNumbers[e] == startingNumbers[i]) {
                 memorizedNumbers.push(userNumbers[e]);
-                score++
+                score++;
             }
         }
 
     }
 
-    console.log("Score", score)
+    console.log("Score", score);
     console.log("Memorized Numbers", memorizedNumbers);
 
-    clearInterval(timer)
+    clearInterval(timer);
 
 }, 5000);
 // /GIOCO
