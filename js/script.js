@@ -1,12 +1,13 @@
 /*
-Un alert() espone 5 numeri generati casualmente.
-Da li parte un timer di 30 secondi.
-Dopo 30 secondi l'utente deve inserire, uno alla volta, i numeri che ha visto precedentemente, tramite il prompt().
 Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
 */
 
 // ----------------------VARIABILI-----------------------------
-var numbersArray = [];
+var score = 0;
+var userChoice;
+var startingNumbers = [];
+var userNumbers = [];
+var memorizedNumbers = [];
 
 // ----------------------/VARIABILI----------------------------
 
@@ -43,9 +44,45 @@ function arrayGeneratorWithoutRepetition (array, elementsNumber, min, max) {
 //-----------------------/FUNZIONI-----------------------------
 
 // GIOCO
-numbersArray = arrayGeneratorWithoutRepetition (numbersArray, 5, 1, 100)
+startingNumbers = arrayGeneratorWithoutRepetition (startingNumbers, 5, 1, 100);
+alert("Stores the following numbers :\n" + startingNumbers);
 
-alert("Stores the following numbers :\n" +numbersArray);
+var timer = setInterval (function() {
 
+    while (userNumbers.length < 5) {
 
+        var message = "Write down the numbers you have memorized :";
+        do {
+            userChoice = parseInt(prompt(message));
+            if (isNaN(userChoice)) {
+                message = "The element entered is not a number. \nWrite down the numbers you have memorized :";
+            } else if (isInArray(userChoice, userNumbers)) {
+                message = "You have already entered this number. \nWrite down the numbers you have memorized :";
+            }
+        } while (isNaN(userChoice) || isInArray(userChoice, userNumbers))
+
+        userNumbers.push(userChoice);
+
+    }
+
+    console.log("Starting Numbers", startingNumbers);
+    console.log("User Numbers", userNumbers);
+    
+    for (var i = 0; i < startingNumbers.length; i++) {
+
+        for (var e = 0; e < userNumbers.length; e++) {
+            if (userNumbers[e] == startingNumbers[i]) {
+                memorizedNumbers.push(userNumbers[e]);
+                score++
+            }
+        }
+
+    }
+
+    console.log("Score", score)
+    console.log("Memorized Numbers", memorizedNumbers);
+
+    clearInterval(timer)
+
+}, 5000);
 // /GIOCO
