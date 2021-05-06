@@ -1,10 +1,13 @@
 // ----------------------VARIABILI-----------------------------
 var score = 0;
+var maxNumber = 5;
+var min = 1;
+var max = 100;
 var userChoice;
 var startingNumbers = [];
 var userNumbers = [];
 var memorizedNumbers = [];
-
+var messageInParagraph = document.getElementById("message");
 // ----------------------/VARIABILI----------------------------
 
 //-----------------------FUNZIONI------------------------------
@@ -36,49 +39,55 @@ function arrayGeneratorWithoutRepetition (array, elementsNumber, min, max) {
     return array;
 
 }
-
 //-----------------------/FUNZIONI-----------------------------
 
 // GIOCO
-startingNumbers = arrayGeneratorWithoutRepetition (startingNumbers, 5, 1, 100);
-alert("Stores the following numbers :\n" + startingNumbers);
+function startGame() {
 
-var timer = setInterval (function() {
+    startingNumbers = arrayGeneratorWithoutRepetition (startingNumbers, maxNumber, min, max);
+    messageInParagraph.innerHTML = "Hai 5 secondi per memorizzare i seguenti numeri<br><span id=\"message-1\">" + startingNumbers + "</span>";
 
-    while (userNumbers.length < 5) {
+    var memory = setInterval (function() {
 
-        var message = "Write down the numbers you have memorized :";
-        do {
-            userChoice = parseInt(prompt(message));
-            if (isNaN(userChoice)) {
-                message = "The element entered is not a number. \nWrite down the numbers you have memorized :";
-            } else if (isInArray(userChoice, userNumbers)) {
-                message = "You have already entered this number. \nWrite down the numbers you have memorized :";
+        messageInParagraph.innerHTML = "<span id=\"message-2\">Li hai memorizzati?<br>Tra qualche secondo lo scopriremo...</span>";
+        clearInterval(memory);
+
+    }, 5000);
+
+    var timer = setInterval (function() {
+
+        while (userNumbers.length < maxNumber) {
+
+            var message = "Inserisci un numero memorizzato in precedenza :";
+            do {
+                userChoice = parseInt(prompt(message));
+                if (isNaN(userChoice)) {
+                    message = "L'elemento inserito non è un numero. \nPerfavore, inserisci un numero memorizzato in precedenza :";
+                } else if (isInArray(userChoice, userNumbers)) {
+                    message = "Hai già selezionato questo numero. \nPerfavore, inserisci un numero differente :";
+                }
+            } while (isNaN(userChoice) || isInArray(userChoice, userNumbers))
+
+            userNumbers.push(userChoice);
+
+        }
+        
+        for (var i = 0; i < startingNumbers.length; i++) {
+
+            for (var e = 0; e < userNumbers.length; e++) {
+                if (userNumbers[e] == startingNumbers[i]) {
+                    memorizedNumbers.push(userNumbers[e]);
+                    score++;
+                }
             }
-        } while (isNaN(userChoice) || isInArray(userChoice, userNumbers))
 
-        userNumbers.push(userChoice);
-
-    }
-
-    console.log("Starting Numbers", startingNumbers);
-    console.log("User Numbers", userNumbers);
-    
-    for (var i = 0; i < startingNumbers.length; i++) {
-
-        for (var e = 0; e < userNumbers.length; e++) {
-            if (userNumbers[e] == startingNumbers[i]) {
-                memorizedNumbers.push(userNumbers[e]);
-                score++;
-            }
         }
 
-    }
+        messageInParagraph.innerHTML = "Numeri di partenza<br><span id=\"message-3\">" + startingNumbers + "</span><br>Numeri che hai memorizzato<br><span id=\"message-3\">" + memorizedNumbers + "</span><br>Il tuo punteggio finale<br><span id=\"message-3\">" + score + "</span>";
 
-    console.log("Score", score);
-    console.log("Memorized Numbers", memorizedNumbers);
+        clearInterval(timer);
 
-    clearInterval(timer);
+    }, 10000);
 
-}, 5000);
+}
 // /GIOCO
