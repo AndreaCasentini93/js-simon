@@ -50,7 +50,7 @@ function startGame() {
     button.innerHTML = ""
 
     startingNumbers = arrayGeneratorWithoutRepetition (startingNumbers, maxNumber, min, max);
-    messageInParagraph.innerHTML = "Hai 8 secondi per memorizzare i seguenti numeri<br><span id=\"message-1\">" + startingNumbers + "</span>";
+    messageInParagraph.innerHTML = "Hai 8 secondi per memorizzare i seguenti numeri compresi tra " + min + " e " + max + "<br><span id=\"message-1\">" + startingNumbers + "</span>";
 
     setTimeout (function() {
 
@@ -69,8 +69,12 @@ function startGame() {
                     message = "L'elemento inserito non è un numero. \nPerfavore, inserisci un numero memorizzato in precedenza :";
                 } else if (isInArray(userChoice, userNumbers)) {
                     message = "Hai già selezionato questo numero. \nPerfavore, inserisci un numero differente :";
+                } else if (userChoice > max) {
+                    message = "Attento! Hai selezionato un numero maggiore di " + max + ". \nPerfavore, inserisci un numero differente :";
+                } else if (userChoice < min ) {
+                    message = "Attento! Hai selezionato un numero minore di " + min + ". \nPerfavore, inserisci un numero differente :";
                 }
-            } while (isNaN(userChoice) || isInArray(userChoice, userNumbers))
+            } while (isNaN(userChoice) || isInArray(userChoice, userNumbers) || userChoice < min || userChoice > max)
 
             userNumbers.push(userChoice);
 
