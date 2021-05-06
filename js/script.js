@@ -8,6 +8,7 @@ var startingNumbers = [];
 var userNumbers = [];
 var memorizedNumbers = [];
 var messageInParagraph = document.getElementById("message");
+var button = document.getElementById("button-box");
 // ----------------------/VARIABILI----------------------------
 
 //-----------------------FUNZIONI------------------------------
@@ -42,7 +43,11 @@ function arrayGeneratorWithoutRepetition (array, elementsNumber, min, max) {
 //-----------------------/FUNZIONI-----------------------------
 
 // GIOCO
+button.innerHTML = "<button onclick=\"startGame()\">Gioca</button>";
+
 function startGame() {
+
+    button.innerHTML = ""
 
     startingNumbers = arrayGeneratorWithoutRepetition (startingNumbers, maxNumber, min, max);
     messageInParagraph.innerHTML = "Hai 5 secondi per memorizzare i seguenti numeri<br><span id=\"message-1\">" + startingNumbers + "</span>";
@@ -83,11 +88,27 @@ function startGame() {
 
         }
 
+        button.innerHTML = "<button onclick=\"reset()\">Reset</button>";
         messageInParagraph.innerHTML = "Numeri di partenza<br><span id=\"message-3\">" + startingNumbers + "</span><br>Numeri che hai memorizzato<br><span id=\"message-3\">" + memorizedNumbers + "</span><br>Il tuo punteggio finale<br><span id=\"message-3\">" + score + "</span>";
 
         clearInterval(timer);
 
     }, 10000);
 
+}
+
+function reset() {
+
+    score = 0;
+    maxNumber = 5;
+    min = 1;
+    max = 100;
+    userChoice;
+    startingNumbers = [];
+    userNumbers = [];
+    memorizedNumbers = [];
+    button.innerHTML = "<button onclick=\"startGame()\">Gioca</button>";
+    messageInParagraph.innerHTML = "";
+    
 }
 // /GIOCO
