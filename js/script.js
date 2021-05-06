@@ -52,14 +52,13 @@ function startGame() {
     startingNumbers = arrayGeneratorWithoutRepetition (startingNumbers, maxNumber, min, max);
     messageInParagraph.innerHTML = "Hai 8 secondi per memorizzare i seguenti numeri<br><span id=\"message-1\">" + startingNumbers + "</span>";
 
-    var memory = setInterval (function() {
+    setTimeout (function() {
 
         messageInParagraph.innerHTML = "<span id=\"message-2\">Li hai memorizzati?<br>Tra qualche secondo lo scopriremo...</span>";
-        clearInterval(memory);
 
     }, 8000);
 
-    var timer = setInterval (function() {
+    setTimeout (function() {
 
         while (userNumbers.length < maxNumber) {
 
@@ -90,8 +89,6 @@ function startGame() {
 
         button.innerHTML = "<button onclick=\"reset()\">Reset</button>";
         messageInParagraph.innerHTML = "Numeri di partenza<br><span id=\"message-3\">" + startingNumbers + "</span><br>Numeri che hai memorizzato<br><span id=\"message-3\">" + memorizedNumbers + "</span><br>Il tuo punteggio finale<br><span id=\"message-3\">" + score + "</span>";
-
-        clearInterval(timer);
 
     }, 38000);
 
