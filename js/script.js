@@ -93,7 +93,7 @@ function startGame() {
 
         clearInterval(timer);
 
-    }, 30000);
+    }, 35000);
 
 }
 
