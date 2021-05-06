@@ -32,12 +32,13 @@ button {
     color: #ffffff;
     background-color: unset;
     cursor: pointer;
-    transition: transform .2s;
+    transition: transform .2s, color .2s, background-color .2s, border .2s;
 }
 button:hover {
-    border: 3px solid #FFDA31;
-    color: #FFDA31;
-    transform: scale(1.1);
+    border: 3px solid #1A1A1A;
+    color: #1A1A1A;
+    background-color: #ffffff;
+    transform: scale(1.3);
 }
 
 p {
