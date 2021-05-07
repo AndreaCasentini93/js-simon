@@ -54,7 +54,14 @@ function startGame() {
 
     setTimeout (function() {
 
-        messageInParagraph.innerHTML = "<span id=\"message-2\">Li hai memorizzati?<br>Tra qualche secondo lo scopriremo...</span>";
+        var n = 30;
+        var countDown = setInterval (function () {
+            messageInParagraph.innerHTML = "<span id=\"message-2\">Li hai memorizzati?<br>Lo scopriremo tra " + n + " secondi</span>";
+            n--
+            if (n == -1){
+                clearInterval (countDown);
+            }
+        }, 1000);
 
     }, 8000);
 
@@ -90,7 +97,7 @@ function startGame() {
         button.innerHTML = "<button onclick=\"reset()\">Reset</button>";
         messageInParagraph.innerHTML = "Numeri di partenza<br><span id=\"message-3\">" + startingNumbers + "</span><br>Numeri che hai memorizzato<br><span id=\"message-3\">" + memorizedNumbers + "</span><br>Il tuo punteggio finale<br><span id=\"message-3\">" + score + "</span> / <span id=\"message-3\">" + maxNumber + "</span>";
 
-    }, 38000);
+    }, 40000);
 
 }
 
