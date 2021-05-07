@@ -80,16 +80,12 @@ function startGame() {
 
         }
         
-        for (var i = 0; i < startingNumbers.length; i++) {
-
-            for (var e = 0; e < userNumbers.length; e++) {
-                if (userNumbers[e] == startingNumbers[i]) {
-                    memorizedNumbers.push(userNumbers[e]);
+            for (var i = 0; i < userNumbers.length; i++) {
+                if (isInArray(userNumbers[i], startingNumbers)) {
+                    memorizedNumbers.push(userNumbers[i]);
                     score++;
                 }
             }
-
-        }
 
         button.innerHTML = "<button onclick=\"reset()\">Reset</button>";
         messageInParagraph.innerHTML = "Numeri di partenza<br><span id=\"message-3\">" + startingNumbers + "</span><br>Numeri che hai memorizzato<br><span id=\"message-3\">" + memorizedNumbers + "</span><br>Il tuo punteggio finale<br><span id=\"message-3\">" + score + "</span>";
