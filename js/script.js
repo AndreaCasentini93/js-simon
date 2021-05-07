@@ -88,7 +88,7 @@ function startGame() {
             }
 
         button.innerHTML = "<button onclick=\"reset()\">Reset</button>";
-        messageInParagraph.innerHTML = "Numeri di partenza<br><span id=\"message-3\">" + startingNumbers + "</span><br>Numeri che hai memorizzato<br><span id=\"message-3\">" + memorizedNumbers + "</span><br>Il tuo punteggio finale<br><span id=\"message-3\">" + score + "</span>";
+        messageInParagraph.innerHTML = "Numeri di partenza<br><span id=\"message-3\">" + startingNumbers + "</span><br>Numeri che hai memorizzato<br><span id=\"message-3\">" + memorizedNumbers + "</span><br>Il tuo punteggio finale<br><span id=\"message-3\">" + score + "</span> / <span id=\"message-3\">" + maxNumber + "</span>";
 
     }, 38000);
 
